@@ -1,0 +1,36 @@
+@(taskForm: Form[Task]) 
+@import helper._ 
+@import helper.twitterBootstrap._ 
+@implicitField = @{ FieldConstructor(bootstrapTemplate.f) }
+
+			<div class="cadastro">
+				<div class="span6">					
+					@helper.form(routes.TaskController.newTask(), args = 'class -> "well", 'class -> "form-horizontal", 'id -> "formNewTask", 'autocomplete-> "off" ) {
+					<h3>Nova tarefa</h3>
+					<fieldset>
+							@inputText( taskForm("label"), 
+							'_label -> "Descrição", 
+							'placeholder -> "Detalhe a atividade",
+							'class -> "input-xlarge" )
+
+							@inputText(taskForm("timeEnding"), 
+							'_label -> "Data da	conclusão", 
+							'class -> "datepicker input-medium" ) 
+						
+							@inputText(taskForm("secondsEnding"),
+							'_label -> "Duração (segundos)", 
+							'type -> "number", 
+							'class -> "input-mini" ) 
+							
+							@select(taskForm("status"), 
+							options = options(TaskStatus.allAsMap()), 
+							'_default -> "Selecione uma	opção", 
+							'_label -> "Status", 
+							'class -> "input-large" )
+					</fieldset>
+					<input type="hidden" value="@taskForm("id").value" name="id" /> 
+					<input type="submit" id="btnSubmit" class="btn btn-primary" value="Cadastrar">					
+					<input type="reset" class="btn btn-warning" value="Limpar">
+					 }
+				</div>
+			</div>

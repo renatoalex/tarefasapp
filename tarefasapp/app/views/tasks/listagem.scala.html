@@ -1,0 +1,63 @@
+@(tasks: List[Task]) 
+@import helper._ 
+@import helper.twitterBootstrap._ 
+
+			<div id="listagem">
+				
+				@if(tasks.isEmpty()) {
+				<h2>Você não possui nenhuma tarefa</h2>
+				} else {
+				<div class="alert alert-info">
+					<p>Você possui @tasks.size() tarefa(s) adicionada(s)</p>
+				</div>
+				<div class="btn-toolbar">
+					<div class="btn-group">
+						<a href="/tasks/list/label" class="btn">
+							<i class="icon-font"></i>
+						</a>
+						<a href="/tasks/list/timeCreation" class="btn">
+							<i class="icon-font"></i>
+						</a>
+						<a href="/tasks/list/timeEnding" class="btn">
+							<i class="icon-font"></i>
+						</a>
+					</div>
+				</div>
+				
+				<table class="table table-condensed">								
+					<tbody>
+						@for(task <- tasks) {
+						<div class="entrada">
+						<tr>
+							<td>
+								<h3><strong>@task.label</strong></h3>															
+							</td>
+							<td>
+									@helper.form(routes.TaskController.editTask(task.id)) { 
+									<button class="btn btn-primary btn-mini"><i class="icon-white icon-pencil"></i> Editar</button>
+									}
+											
+							</td>
+							<td>
+									@helper.form(routes.TaskController.deleteTask(task.id)) {
+									<button class="btn btn-danger btn-mini"><i class="icon-white icon-trash"></i> Excluir</button>
+									}
+
+							</td>
+						</tr>
+						<tr valign="middle" class="linha-tabela">
+								<td><span>Prazo para conclusão</span></td>
+								<td><span>Data de encerramento</span></td>
+								<td><span>Status</span></td>
+						</tr>
+						<tr class="linha-tabela">
+								<td><span class="text-info">@task.timeLeftBeforeExpires()</span></td>
+								<td><span class="text-info">@task.dateEndingFormatted()</span></td>
+								<td><span class="label" title="Status da atividade">@task.statusFormatted()</span></td>
+						</tr>
+					</div>
+						}
+					</tbody>
+				</table>
+			}
+				</div>
