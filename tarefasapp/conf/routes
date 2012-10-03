@@ -15,3 +15,5 @@ GET     /tasks/list/:filter        	controllers.TaskController.listTasksOrdered(
 POST    /tasks                  	controllers.TaskController.newTask()
 POST    /tasks/:id/delete       	controllers.TaskController.deleteTask(id: Long)
 POST    /tasks/:id/edit		    	controllers.TaskController.editTask(id: Long)
+POST    /tasks/:id/complete	    	controllers.TaskController.completeTask(id: Long)
+POST    /tasks/:id/cancel	    	controllers.TaskController.cancelTask(id: Long)

@@ -54,8 +54,10 @@ public class Task extends Model {
 		List<Task> allTasks = find.findList();
 
 		for (Task task : allTasks) {
-			if (task.isExpired())
-				task.status = TaskStatus.DELAYED;
+			if (task.status.equals(TaskStatus.PENDING)) {
+				if (task.isExpired())
+					task.status = TaskStatus.DELAYED;
+			}
 		}
 
 		return allTasks;
@@ -78,8 +80,10 @@ public class Task extends Model {
 		}
 
 		for (Task task : allTasks) {
-			if (task.isExpired())
-				task.status = TaskStatus.DELAYED;
+			if (task.status.equals(TaskStatus.PENDING)) {
+				if (task.isExpired())
+					task.status = TaskStatus.DELAYED;
+			}
 		}
 
 		return allTasks;
@@ -132,7 +136,9 @@ public class Task extends Model {
 	}
 
 	public String timeLeftBeforeExpires() {
-		if (timeCreation != null) {
+		if (timeCreation != null
+				&& (status.equals(TaskStatus.DELAYED) || status
+						.equals(TaskStatus.PENDING))) {
 			int diff = Seconds
 					.secondsBetween(timeCreation, LocalDateTime.now())
 					.getSeconds();

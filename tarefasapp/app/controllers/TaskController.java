@@ -3,6 +3,7 @@ package controllers;
 import java.util.Locale;
 
 import models.Task;
+import models.TaskStatus;
 
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -65,6 +66,20 @@ public class TaskController extends Controller {
 		nova.id = id;
 		Form<Task> filledForm = taskForm.fill(nova);
 		return ok(views.html.tasks.form.render(Task.all(), filledForm));
+	}
+
+	public static Result completeTask(Long id) {
+		Task nova = Task.retrieve(id);
+		nova.status = TaskStatus.COMPLETED;
+		Task.update(nova);
+		return redirect(routes.TaskController.tasks());
+	}
+
+	public static Result cancelTask(Long id) {
+		Task nova = Task.retrieve(id);
+		nova.status = TaskStatus.CANCELED;
+		Task.update(nova);
+		return redirect(routes.TaskController.tasks());
 	}
 
 	public static Result deleteTask(Long id) {
