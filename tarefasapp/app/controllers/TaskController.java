@@ -48,6 +48,11 @@ public class TaskController extends Controller {
 
 		Form<Task> filledForm = taskForm.bindFromRequest();
 
+		if (filledForm.get().timeEnding.isBefore(LocalDateTime.now())) {
+			filledForm.reject("timeEnding",
+					"A data de conclusão deve ser igual ou posterior a hoje");
+		}
+
 		if (filledForm.hasErrors()) {
 			return badRequest(views.html.tasks.form.render(Task.all(),
 					filledForm));
@@ -78,6 +83,13 @@ public class TaskController extends Controller {
 	public static Result cancelTask(Long id) {
 		Task nova = Task.retrieve(id);
 		nova.status = TaskStatus.CANCELED;
+		Task.update(nova);
+		return redirect(routes.TaskController.tasks());
+	}
+
+	public static Result setAsImportant(Long id) {
+		Task nova = Task.retrieve(id);
+		nova.important = !nova.important;
 		Task.update(nova);
 		return redirect(routes.TaskController.tasks());
 	}

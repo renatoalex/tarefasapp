@@ -33,7 +33,7 @@
 						<div class="entrada">
 							<tr class="linha-tabela-bem-escura">
 								<td>
-									<h3><strong>@task.label</strong></h3>															
+									<h3><strong class="draggable">@task.label</strong></h3>	
 								</td>
 								<td colspan="2">
 								<ul class="nav">
@@ -73,10 +73,22 @@
 											<button class="btn btn-danger btn-small fixedwidth"><i class="icon-white icon-trash"></i><p>Excluir</p></button>
 										}
 									</li>
-								</ul>
-										
+								</ul>										
 								</td>
-							</tr>						
+							</tr>	
+							<tr class="droppable">
+								<td colspan="3">
+								@helper.form(routes.TaskController.setAsImportant(task.id),
+										args = 'class -> "pull-left") {
+										@if(task.important!= null && task.important.equals(Boolean.TRUE)){
+											<button class="btn btn-danger btn-small fixedwidth"><i class="icon-white icon-warning-sign"></i> Importante</button>
+										} else {										
+											<button class="btn btn-small fixedwidth"><i class="icon-white icon-warning-sign"></i> Marcar como importante</button>
+										}
+								}
+								
+								</td>
+							</tr>			
 							<tr valign="middle" class="linha-tabela-escura">
 									<td><span>Prazo para conclusão</span></td>
 									<td><span>Data de encerramento</span></td>

@@ -48,6 +48,8 @@ public class Task extends Model {
 	@Enumerated(EnumType.STRING)
 	public TaskStatus status = TaskStatus.PENDING;
 
+	public Boolean important = Boolean.FALSE;
+
 	static boolean asc = true;
 
 	public static List<Task> all() {

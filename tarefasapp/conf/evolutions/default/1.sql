@@ -10,6 +10,7 @@ create table task (
   time_ending               timestamp,
   seconds_ending            integer,
   status                    varchar(9),
+  important                 boolean,
   constraint ck_task_status check (status in ('PENDING','COMPLETED','CANCELED','DELAYED')),
   constraint pk_task primary key (id))
 ;
