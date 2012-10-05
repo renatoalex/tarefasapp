@@ -20,10 +20,8 @@ dump
 bin
 
 # SBT
-dist
-project/boot
+project/project
 project/target
-project/plugins/target
 target
 .target
 
