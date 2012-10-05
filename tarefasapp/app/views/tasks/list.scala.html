@@ -1,0 +1,18 @@
+@(tasks: List[Task]) 
+@import helper._ 
+@import helper.twitterBootstrap._
+
+@main(Html("Lista de tarefas"), nav = "listing") {
+
+<div class="container">
+  <div class="row">
+    <div class="span10">
+      <!--Sidebar content-->
+      @listagem(tasks)
+    </div>
+  </div>  
+  
+</div>
+
+
+}
