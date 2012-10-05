@@ -11,6 +11,7 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
 import org.joda.time.Period;
 import org.joda.time.Seconds;
 import org.joda.time.format.DateTimeFormat;
@@ -40,6 +41,8 @@ public class Task extends Model {
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
 	public LocalDateTime timeEnding;
+
+	public LocalTime hourEnding;
 
 	@Required
 	public int secondsEnding;
@@ -129,7 +132,7 @@ public class Task extends Model {
 	}
 
 	public String dateEndingFormatted() {
-		return DateTimeFormat.forPattern("dd/MM/yyyy").print(
+		return DateTimeFormat.forPattern("dd/MM/yyyy 'as' hh:mm:ss").print(
 				timeEnding.toDateTime());
 	}
 

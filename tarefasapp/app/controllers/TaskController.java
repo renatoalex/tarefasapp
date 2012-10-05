@@ -48,9 +48,13 @@ public class TaskController extends Controller {
 
 		Form<Task> filledForm = taskForm.bindFromRequest();
 
-		if (filledForm.get().timeEnding.isBefore(LocalDateTime.now())) {
-			filledForm.reject("timeEnding",
-					"A data de conclusão deve ser igual ou posterior a hoje");
+		if (!filledForm.hasErrors()) {
+
+			if (filledForm.get().timeEnding.isBefore(LocalDateTime.now())) {
+				filledForm
+						.reject("timeEnding",
+								"A data de conclusão deve ser igual ou posterior a hoje");
+			}
 		}
 
 		if (filledForm.hasErrors()) {

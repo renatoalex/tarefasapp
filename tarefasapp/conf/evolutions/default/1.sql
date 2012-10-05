@@ -8,6 +8,7 @@ create table task (
   label                     varchar(255),
   time_creation             timestamp,
   time_ending               timestamp,
+  hour_ending               time,
   seconds_ending            integer,
   status                    varchar(9),
   important                 boolean,
