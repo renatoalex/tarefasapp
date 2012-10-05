@@ -1,0 +1,15 @@
+@(tasks: List[Task], taskForm: Form[Task]) 
+@import helper._ 
+@import helper.twitterBootstrap._ 
+@main(Html("Dashboard"), nav = "new") {
+
+    <div class="span3 container well">
+      <!--Sidebar content-->
+      @formulario(taskForm)     
+    </div>
+    <div class="span9 container well" id="listaTarefas">
+      <!--Body content-->
+       @listagem(tasks)
+    </div>
+
+}

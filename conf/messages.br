@@ -1,0 +1,24 @@
+# Default messages
+
+# --- Constraints
+constraint.required=Obrigatório
+constraint.min=Valor mínimo: {0}
+constraint.max=Valor máximo: {0}
+constraint.minLength=Tamanho mínimo: {0}
+constraint.maxLength=Tamanho máximo: {0}
+constraint.email=Email
+
+# --- Formats
+format.date=Data (''{0}'')
+format.numeric=Númerico
+
+# --- Errors
+error.invalid=Valor inválido
+error.required=Este campo é obrigatório
+error.number=Valor númerico esperado
+error.min=Deve ser maior ou igual a {0}
+error.max=Deve ser menor ou igual a {0}
+error.minLength=Tamanho mínimo é {0}
+error.maxLength=Tamanho máximo é {0}
+error.email=Email válido obrigatório
+error.pattern=Deve sastifazer {0}
