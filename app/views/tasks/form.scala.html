@@ -3,7 +3,7 @@
 @import helper.twitterBootstrap._ 
 @main(Html("Dashboard"), nav = "new") {
 
-    <div class="span3 container well">
+    <div class="span3 container-fluid well" style="min-width: 320px">
       <!--Sidebar content-->
       @formulario(taskForm)     
     </div>
@@ -11,5 +11,6 @@
       <!--Body content-->
        @listagem(tasks)
     </div>
+   
 
 }
